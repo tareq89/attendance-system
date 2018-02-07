@@ -8,11 +8,17 @@ const ManagerRoutes = require('./routes/ManagerRoutes');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 app.use('/hr', HRroutes);
 app.use('/manager', ManagerRoutes);
 
 const DB = require('./utility/connectDB');
-const createEmployee = require('./middlewares/createEmployee');
+
 
 
 app.get('/', (req, res) => {
@@ -40,24 +46,14 @@ app.post('/login', (req, res) => {
             var token = jsonwebtoken.sign(user, config.SECRET);
             res.json({
                 success: true,
-                token: token
+                token: token,
+                user: user
             });
         }
     })
 });
 
-app.post('/create', (req, res) => {
-    console.log(createEmployee)
-    createEmployee(req.body, (err, result) => {
-        if (err) {
-            console.log("Error")
-            res.sendStatus(500);
-        } else {
-            console.log("Success")
-            res.sendStatus(200);
-        }        
-    })
-});
+
 
 
 DB.connect(config.DB_CONNECTION_STRING, function(err) {
