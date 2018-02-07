@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
-const db = require('./utility/connectDB');
-const dbConnectionString = "mongodb://localhost:27017/";
-let DB = {};
+const bodyParser = require('body-parser');
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+const DB = require('./utility/connectDB');
+const createEmployee = require('./middlewares/createEmployee');
 
 app.get('/', (req, res) => {
-    const collection = db.get().collection('users')
+    const collection = DB.get().collection('users')
     collection.find({}).toArray((err, items) => {
         if(err) throw err;
         console.log(items)
@@ -13,9 +17,24 @@ app.get('/', (req, res) => {
     });        
 });
 
+app.post('/create', (req, res) => {
+    console.log(createEmployee)
+    createEmployee(req.body, (err, result) => {
+        if (err) {
+            console.log("Error")
+            res.sendStatus(500);
+        } else {
+            console.log("Success")
+            res.sendStatus(200);
+        }        
+    })
+});
 
+
+const DB_CONNECTION_STRING = "mongodb://localhost:27017/";
 const PORT = process.env.PORT || 3000;
-db.connect(dbConnectionString, function(err) {
+
+DB.connect(DB_CONNECTION_STRING, function(err) {
   if (err) {
     console.log('Unable to connect to Mongo.')
     process.exit(1)
