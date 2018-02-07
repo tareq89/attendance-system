@@ -1,9 +1,12 @@
+const jwt = require('jsonwebtoken');
+const config = require('../config');
+
 const checkJWT = (req, res, next) => {    
     var token = req.body.token || req.query.token || req.headers['token'];
     if (token) {
   
       
-      jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
+      jwt.verify(token, config.SECRET, function(err, decoded) {      
         if (err) {
           return res.json({ success: false, message: 'Failed to authenticate token.' });    
         } else {

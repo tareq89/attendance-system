@@ -2,13 +2,12 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const jsonwebtoken = require('jsonwebtoken');
-
+const config = require('./config');
 const HRroutes = require('./routes/HRroutes');
 
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('superSecret', 'selise');
 app.use('/hr', HRroutes);
 
 const DB = require('./utility/connectDB');
@@ -37,7 +36,7 @@ app.post('/login', (req, res) => {
         } else {
             console.log("user match")
             delete user.password;
-            var token = jsonwebtoken.sign(user, app.get('superSecret'));
+            var token = jsonwebtoken.sign(user, config.SECRET);
             res.json({
                 success: true,
                 token: token
@@ -60,18 +59,13 @@ app.post('/create', (req, res) => {
 });
 
 
-
-
-const DB_CONNECTION_STRING = "mongodb://localhost:27017/";
-const PORT = process.env.PORT || 3000;
-
-DB.connect(DB_CONNECTION_STRING, function(err) {
+DB.connect(config.DB_CONNECTION_STRING, function(err) {
   if (err) {
     console.log('Unable to connect to Mongo.')
     process.exit(1)
   } else {
-    app.listen(PORT, function() {
-      console.log(`Listening on port ${PORT}...`)
+    app.listen(config.PORT, function() {
+      console.log(`Listening on port ${config.PORT}...`)
     })
   }
 })

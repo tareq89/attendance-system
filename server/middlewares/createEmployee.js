@@ -12,4 +12,4 @@ const createEmployee = (user, callback) => {
     collection.insertOne(employee, callback);
 }    
 
-module.exports = createEmployee
+module.exports = createEmployee;
