@@ -7,13 +7,15 @@ import { LoginComponent } from './login/login.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SalarySheetComponent } from './salary-sheet/salary-sheet.component';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SalarySheetComponent
+    SalarySheetComponent,
+    AttendanceComponent
   ],
   imports: [
     BrowserModule,

@@ -25,8 +25,14 @@ app.get('/', (req, res) => {
     const collection = DB.get().collection('users')
     collection.find({}).toArray((err, items) => {
         if(err) throw err;
-        console.log(items)
-        res.send(items)
+        else {
+            for(let item of items) {
+                delete item.password
+                delete item._id
+            };
+            console.log(items)
+            res.send(items)
+        }
     });        
 });
 

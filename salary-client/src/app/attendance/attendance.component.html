@@ -1,17 +1,19 @@
-<h1>Salary Sheet</h1>
+<h1>Attendance</h1>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">name</th>
       <th scope="col">email</th>
-      <th scope="col">salary</th>
+      <th scope="col">date</th>
+      <th scope="col">type</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let em of employees">
       <td>{{em.name}}</td>
       <td>{{em.email}}</td>
-      <td>{{em.salary}}</td>
+      <td>{{em.date}}</td>
+      <td>{{em.type}}</td>      
     </tr>
   </tbody>
 </table>

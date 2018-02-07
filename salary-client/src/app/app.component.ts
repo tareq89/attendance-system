@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { LoginComponent }  from './login/login.component';
 import { SalarySheetComponent } from './salary-sheet/salary-sheet.component';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'app';
   user = {};
@@ -15,8 +17,8 @@ export class AppComponent {
   isHr = false;
 
   constructor() {
+    //window.localStorage.removeItem("userInfo");
     this.user = JSON.parse(window.localStorage.getItem("userInfo")).user;
-    console.log(this.user)
     if(!this.user) this.loggedIn = true;
     else this.loggedIn = true;
 

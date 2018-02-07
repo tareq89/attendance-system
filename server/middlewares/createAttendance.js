@@ -2,7 +2,8 @@ const DB = require('../utility/connectDB');
 
 const createAttendance = (attendance, callback) => {   
     console.log(attendance)
-    let employeeAttendance = {        
+    let employeeAttendance = {
+        name: attendance.employeeName,   
         email: attendance.employeeEmail,
         type: attendance.type,
         date: Date.now() // you should be using ISODatetime format, but no time
