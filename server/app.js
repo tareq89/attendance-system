@@ -4,11 +4,12 @@ const bodyParser = require('body-parser');
 const jsonwebtoken = require('jsonwebtoken');
 const config = require('./config');
 const HRroutes = require('./routes/HRroutes');
-
+const ManagerRoutes = require('./routes/ManagerRoutes');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/hr', HRroutes);
+app.use('/manager', ManagerRoutes);
 
 const DB = require('./utility/connectDB');
 const createEmployee = require('./middlewares/createEmployee');
