@@ -3,12 +3,17 @@ const app = express();
 const bodyParser = require('body-parser');
 const jsonwebtoken = require('jsonwebtoken');
 
+const HRroutes = require('./routes/HRroutes');
+
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('superSecret', 'selise');
+app.use('/hr', HRroutes);
 
 const DB = require('./utility/connectDB');
 const createEmployee = require('./middlewares/createEmployee');
+
 
 app.get('/', (req, res) => {
     const collection = DB.get().collection('users')
@@ -53,6 +58,8 @@ app.post('/create', (req, res) => {
         }        
     })
 });
+
+
 
 
 const DB_CONNECTION_STRING = "mongodb://localhost:27017/";
