@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const jsonwebtoken = require('jsonwebtoken');
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.set('superSecret', 'selise');
 
 const DB = require('./utility/connectDB');
 const createEmployee = require('./middlewares/createEmployee');
@@ -15,6 +17,28 @@ app.get('/', (req, res) => {
         console.log(items)
         res.send(items)
     });        
+});
+
+app.post('/login', (req, res) => {
+    const collection = DB.get().collection('users');
+    collection.findOne({
+        email: req.body.email        
+    }, (err, user) => {        
+        if (err) throw err;
+        if (!user) {            
+            res.json({ success: false, message: 'Authentication failed. User not found.' });
+        } else if (user.password != req.body.password) {                       
+            res.json({ success: false, message: 'Authentication failed. Wrong password.' });            
+        } else {
+            console.log("user match")
+            delete user.password;
+            var token = jsonwebtoken.sign(user, app.get('superSecret'));
+            res.json({
+                success: true,
+                token: token
+            });
+        }
+    })
 });
 
 app.post('/create', (req, res) => {
