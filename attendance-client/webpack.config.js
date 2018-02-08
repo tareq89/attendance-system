@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
 
     entry: {        
-        vendor: ['./src/js/app.ts', 'bootstrap']
+        vendor: ['./src/js/app.ts']
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -28,8 +28,32 @@ module.exports = {
                 use: [
                     'style-loader',
                     'css-loader'
-                ],
-                exclude: /node_modules/
+                ]                
+            },
+            {
+                test: /\.(png|jpg|svg)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 15000,
+                        name: '[name].[ext]',
+                    },
+                },
+            },
+            { 
+                test: /\.(woff|woff2|eot|ttf|svg)$/, 
+                loader: 'file-loader',
+                options : {
+                    name: '[name].[ext]',
+                }
+            },
+            { 
+                test: /\.html$/, 
+                loader: 'file-loader',
+                options : {
+                    name: '[name].[ext]',
+                },
+                exclude: path.resolve(__dirname, 'index.html')
             },
             {
                 test: /\.tsx?$/,
