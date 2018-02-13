@@ -14,20 +14,23 @@
             <ul class="list-group" id="notice-ul"></ul>
         </div>
         <div class="row">
-            <form class="absolute-center">
+            <form name="editor">                
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter Title">            
+                    <label for="notice">Notice</label>
+                    <div>
+                        <span id="title" class="intLink">
+                            <em>Title</em>
+                        </span> | 
+                        <span id="subtitle" class="intLink">
+                            <sub>Subtitle</sub> |
+                        </span>
+                        <span id="_bold" class="intLink">
+                            <strong>Bold</strong>
+                        </span> | 
+                    </div>
+                    <textarea class="form-control" id="texteditor" rows="10"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="subtitle">Sub Title</label>
-                    <input type="text" class="form-control" id="subtitle" placeholder="Enter Sub Title">
-                </div>
-                <div class="form-group">
-                    <label for="notice">Description</label>
-                    <textarea class="form-control" id="notice" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" id="loginButton">Submit</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="loginButton">Submit</button>
             </form> 
         </div>
            

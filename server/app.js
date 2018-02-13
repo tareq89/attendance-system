@@ -64,17 +64,13 @@ app.post('/login', (req, res) => {
 
 
 
-// DB.connect(config.DB_CONNECTION_STRING, function(err) {
-//   if (err) {
-//     console.log('Unable to connect to Mongo.')
-//     process.exit(1)
-//   } else {
-//     app.listen(config.PORT, function() {
-//       console.log(`Listening on port ${config.PORT}...`)
-//     })
-//   }
-// })
-
-app.listen(config.PORT, function() {
-   console.log(`Listening on port ${config.PORT}...`)
-})
+DB.connect(config.DB_CONNECTION_STRING, function(err) {
+  if (err) {
+    console.log('Unable to connect to Mongo.')
+    process.exit(1)
+  } else {
+    app.listen(config.PORT, function() {
+      console.log(`Listening on port ${config.PORT}...`)
+    })
+  }
+});
