@@ -8,22 +8,37 @@
     <title>Webpack 3 with Typescript</title>
 </head>
 <body>    
-    <form class="absolute-center">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <div class="container"> 
+        <div class="row">
+            <ul class="list-group" id="notice-ul">
+                <!--<li class="list-group-item">
+                    <div>
+                        <h1>Tomorrow Office closed</h1>
+                        <h6>HR notice</h6>
+                        <span>Tomorrow is office closed due to some reason</span>
+                    </div>
+                </li>            -->
+            </ul>
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <div class="row">
+            <form class="absolute-center">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter Title">            
+                </div>
+                <div class="form-group">
+                    <label for="subtitle">Sub Title</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Sub Title">
+                </div>
+                <div class="form-group">
+                    <label for="notice">Description</label>
+                    <textarea class="form-control" id="notice" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="loginButton">Submit</button>
+            </form> 
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary" id="loginButton">Submit</button>
-    </form>    
+           
+    </div>
     <script src="dist/bundle.js"></script>
 </body>
 </html>

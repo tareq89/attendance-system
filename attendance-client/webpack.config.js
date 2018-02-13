@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
 
     entry: {        
-        vendor: ['./src/js/app.ts']
+        vendor: ['./src/app.ts']
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

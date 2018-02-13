@@ -5,6 +5,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const config = require('./config');
 const HRroutes = require('./routes/HRroutes');
 const ManagerRoutes = require('./routes/ManagerRoutes');
+const NoticeRoutes = require('./routes/NoticeRoutes');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,6 +17,7 @@ app.use(function(req, res, next) {
 });
 app.use('/hr', HRroutes);
 app.use('/manager', ManagerRoutes);
+app.use('/notice', NoticeRoutes);
 
 const DB = require('./utility/connectDB');
 
@@ -62,13 +64,17 @@ app.post('/login', (req, res) => {
 
 
 
-DB.connect(config.DB_CONNECTION_STRING, function(err) {
-  if (err) {
-    console.log('Unable to connect to Mongo.')
-    process.exit(1)
-  } else {
-    app.listen(config.PORT, function() {
-      console.log(`Listening on port ${config.PORT}...`)
-    })
-  }
+// DB.connect(config.DB_CONNECTION_STRING, function(err) {
+//   if (err) {
+//     console.log('Unable to connect to Mongo.')
+//     process.exit(1)
+//   } else {
+//     app.listen(config.PORT, function() {
+//       console.log(`Listening on port ${config.PORT}...`)
+//     })
+//   }
+// })
+
+app.listen(config.PORT, function() {
+   console.log(`Listening on port ${config.PORT}...`)
 })

@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jquery": "^3.3.0",
     "css-loader": "^0.28.9",
     "style-loader": "^0.20.1",
     "ts-loader": "^3.4.0",
